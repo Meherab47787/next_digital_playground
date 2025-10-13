@@ -46,15 +46,19 @@ export const leaveManagementSchema: JSONSchemaNode = {
 
     // 🔹 TABLE SECTION
     {
-      id: "leave-table-section",
+      id: "leave-records-table",
       type: "table",
-      title: "Leave History",
+      title: "Leave Records",
+      bind: "tableDef", 
       columns: [
         { key: "type", label: "Type" },
         { key: "mode", label: "Mode" },
         { key: "status", label: "Status" },
       ],
-      bind: "leaveRecords",
+      actions: [
+    { label: "Edit", type: "link", endpoint: "/employee/edit/:id" },
+    { label: "Delete", type: "api", method: "DELETE", endpoint: "/api/employee/:id", confirm: true }
+  ]
     },
   ],
 };

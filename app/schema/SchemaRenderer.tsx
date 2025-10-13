@@ -4,7 +4,10 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
 import { JSONSchemaNode } from "./schemaInterface"
-import { DataTable } from "@/components/ui/dataTable"
+import { DataTable } from "@/components/ui/dataTable/data-table"
+import { ColumnDef } from "@tanstack/react-table"
+import { generateColumnsFromSchema } from "@/components/ui/dataTable/columns"
+
 
 interface SchemaRendererProps {
   schema: JSONSchemaNode
@@ -52,28 +55,27 @@ export default function SchemaRenderer({ schema, data }: SchemaRendererProps) {
 
 
 case "table": {
-  const rows = (schema.bind && data[schema.bind]) ? data[schema.bind] : []
+      const tableSource = schema.bind ? data[schema.bind] : null
+      console.log(`TableSource:`, tableSource)
+      if (!tableSource) return null
 
-  // Dynamically generate columns from your schema
-  const columns =
-    schema.columns?.map(col => ({
-      accessorKey: col.key,
-      header: col.label,
-      cell: ({ row }: any) => {
-        const value = row.getValue(col.key)
-        return <span>{String(value ?? "")}</span>
-      },
-    })) ?? []
+      const { columnDef = [], leaveRecords = [] } = tableSource
 
-  return (
-    <div className="mt-6">
-      {schema.title && (
-        <h2 className="text-lg font-semibold mb-2">{schema.title}</h2>
-      )}
-      <DataTable columns={columns} data={rows} />
-    </div>
-  )
-}
+      // const columns: ColumnDef<any>[] = columnDef.map((col: any) => ({
+      //   accessorKey: col.key,
+      //   header: col.value,
+      //   cell: ({ row }: any) => <span>{String(row.getValue(col.key) ?? "")}</span>,
+      // }))
+
+      const columns: ColumnDef<any>[] = generateColumnsFromSchema(columnDef)
+
+      return (
+        <div className="mt-6">
+          {schema.title && <h2 className="text-lg font-semibold mb-2">{schema.title}</h2>}
+          <DataTable columns={columns} data={leaveRecords} />
+        </div>
+      )
+    }
 
     default:
       return null

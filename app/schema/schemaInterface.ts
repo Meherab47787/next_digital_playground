@@ -1,3 +1,5 @@
+import { JSONSchemaAction } from "./schemaActionInterface";
+
 export interface JSONSchemaNode {
   id: string;
   type:
@@ -17,4 +19,5 @@ export interface JSONSchemaNode {
   style?: Record<string, any>;
   columns?: { key: string; label: string }[];
   children?: JSONSchemaNode[];
+  actions?: JSONSchemaAction[]
 }
