@@ -23,6 +23,15 @@ export const leaveManagementData = {
     { type: "Monthly", mode: "Full Day", status: "Approved" },
     { type: "Casual", mode: "Half Day", status: "Pending" },
     { type: "Sick", mode: "Full Day", status: "Cancelled" },
+    { type: "Sick", mode: "Full Day", status: "Cancelled" },
+    { type: "Monthly", mode: "Full Day", status: "Approved" },
+    { type: "Sick", mode: "Full Day", status: "Cancelled" },
+    { type: "Casual", mode: "Half Day", status: "Pending" },
+    { type: "Sick", mode: "Full Day", status: "Cancelled" },
+    { type: "Sick", mode: "Full Day", status: "Cancelled" },
+    { type: "Monthly", mode: "Full Day", status: "Approved" },
+    { type: "Sick", mode: "Full Day", status: "Cancelled" },
+    { type: "Monthly", mode: "Full Day", status: "Approved" },
   ],
   actions: [
       {

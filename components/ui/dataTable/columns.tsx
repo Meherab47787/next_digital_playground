@@ -8,8 +8,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { leaveManagementData } from "@/app/schema/data/leaveManagementData"
@@ -25,29 +23,32 @@ export function generateColumnsFromSchema(
       const value = String(rawValue) // cast unknown → string
 
       // Status formatting with color badges
-      if (col.key === "status") {
-        const statusColors: Record<string, string> = {
-          Approved: "bg-green-100 text-green-800",
-          Pending: "bg-yellow-100 text-yellow-800",
-          Cancelled: "bg-red-100 text-red-800",
-        }
-        return (
-          <span
-            className={` px-2 py-1 rounded-full text-sm ${
-              statusColors[value] ?? "bg-gray-100 text-gray-800"
-            }`}
-          >
-            {value}
-          </span>
-        )
-      }
+      // if (col.key === "status") {
+      //   const statusColors: Record<string, string> = {
+      //     Approved: "bg-green-100 text-green-800",
+      //     Pending: "bg-yellow-100 text-yellow-800",
+      //     Cancelled: "bg-red-100 text-red-800",
+      //   }
+      //   return (
+      //     <span
+      //       className={` px-2 py-1 rounded-full text-sm ${
+      //         statusColors[value] ?? "bg-gray-100 text-gray-800"
+      //       }`}
+      //     >
+      //       {value}
+      //     </span>
+      //   )
+      // }
 
       // Mode formatting as subtle badge
       if (col.key === "mode") {
         return (
-          <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-800 text-sm">
+          // <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-800 text-sm">
+          <span>
+        
             {value}
-          </span>
+          </span>  
+          // </span>
         )
       }
 

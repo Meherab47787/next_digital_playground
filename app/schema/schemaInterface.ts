@@ -11,7 +11,7 @@ export interface JSONSchemaNode {
     | "group"
     | "textbox"
     | "button"
-    | string; // allow extensibility
+    | string;
   title?: string;
   layout?: "vertical" | "horizontal";
   spacing?: "sm" | "md" | "lg";
